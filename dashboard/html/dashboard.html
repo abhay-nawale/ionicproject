@@ -1,0 +1,243 @@
+<!--Online course section-->
+<ion-view title="Dashboard" id="online-course">
+    <ion-content id="online-course-content">
+        <!--toolbar section-->
+        <md-toolbar class="bar-subheader md-tall md-primary toolbar-online-course ">
+            <div>
+                <img src="img/index.png" class="user-img"/>
+
+                <h1>Real Estate</h1>
+
+                <h2>This is subheading</h2>
+            </div>
+
+        </md-toolbar> <!--end toolbar section-->
+        <ion-slide-box loop="true" auto-play="true" speed="1000" options="options" id="slide-catalog-content" active-slide="0">
+        <!--slide section-->
+      
+        
+        <ion-slide>
+            <!--pin section-->
+            <div class="pin" >
+                <img ng-src="{{'img/slider1.jpg'}}"/>
+
+               
+            </div> <!--end pin section-->
+        </ion-slide>
+        <ion-slide>
+            <!--pin section-->
+            <div class="pin" ng-click="showConfirmDialog($event)">
+                <img ng-src="{{'img/slider2.jpg'}}"/>
+
+
+            </div> <!--end pin section-->
+        </ion-slide>
+        <ion-slide>
+            <!--pin section-->
+            <div class="pin" ng-click="showConfirmDialog($event)">
+                <img ng-src="{{'img/slider3.jpg'}}"/>
+
+
+                
+            </div> <!--end pin section-->
+        </ion-slide>
+        
+    </ion-slide-box>
+		
+	
+    <div class="row detail homesearch" ng-controller="dashboardCtrl">
+                <div class="col">
+                    <h1>
+                        Property Search
+                    </h1>
+					<div class="col-100">
+				  	<label>Location</label>
+                    	<md-select ng-model="location" aria-label="md-option" >
+							<md-option  ng-repeat="l in locationlist" value="{{l.id}}">{{l.location_name}}</md-option>
+							
+						</md-select>
+                	</div>
+					
+					<div class="col-100">
+				  	<label>Property Type</label>
+                    	<md-select ng-model="propertytype" aria-label="md-option" >
+							<md-option  ng-repeat="p in propertylist" value="{{p.id}}">{{p.property_type}}</md-option>
+						</md-select>
+                	</div>
+					
+					<div class="col-100">
+				  	<label>Transaction Type</label>
+                    	<md-select ng-model="transactiontype" aria-label="md-option" >
+							<md-option value="Sale">For Sale</md-option>
+							<md-option value="Rent">For Rent</md-option>
+							
+						</md-select>
+                	</div>
+					
+					<div class="col-100">
+					<label>Amount From</label>	
+					<md-slider-container>
+					  <span class="md-body-1">$</span>
+					  <md-slider flex ng-model="amountfrom" min="0" max="1500000" aria-label="blue" id="blue-slider" class="md-primary">
+					  </md-slider>
+					  <md-input-container>
+						<input flex type="number" ng-model="amountfrom" aria-label="blue" aria-controls="blue-slider">
+					  </md-input-container>
+					</md-slider-container>
+					</div>	
+					
+					<div class="col-100">
+					<label>Amount To</label>	
+					<md-slider-container>
+					  <span class="md-body-1">$</span>
+					  <md-slider flex ng-model="amountto" min="0" max="1500000" aria-label="blue" id="blue-slider" class="md-primary">
+					  </md-slider>
+					  <md-input-container>
+						<input flex type="number" ng-model="amountto" aria-label="blue" aria-controls="blue-slider">
+					  </md-input-container>
+					</md-slider-container>
+					</div>	
+					
+					
+					
+					<div class="col-100">
+						<button class="button button-block customized-login-button" ng-click="propertylistshow()" type="submit">Search</button>
+
+					</div>
+                </div>
+				  
+            </div>                
+	
+	 <div class="row detail homesearch">
+		 <div class="col">
+			<h1>
+				<br>
+				<br>
+				FEATURED PROPERTIES
+			</h1>
+		 </div>	 
+	 </div>	 
+	 <div id="location-feed-content" class="row detail homesearch">	 
+		 <div class="col">
+		 	<div class="location-list">
+            <!--location item section-->
+            <div class="location-item" ng-repeat="f in featuredproperties">
+                <div class="location-img" ng-style="{'background-image':'url({{f.image}})'}">
+
+                </div>
+                <div class="location-content row">
+                    <div class="col-67">
+                        <h1>
+                            {{f.property_name}}
+                        </h1>
+
+                        <p>
+                            <i class="fa fa-map-marker"></i> {{f.address}}
+                        </p>
+						<div class="row">
+					 	<div class="col">
+						<p>
+                            <i class="fa fa-building-o"></i> For {{f.property_type}}
+                        </p>
+						</div>
+						<div class="col">
+						<p>
+                            <i class="fa fa-bed"></i> {{f.bedroom}}
+                        </p>
+						</div>
+						<div class="col">
+						<p>
+                            <i class="fa  fa-television "></i> {{f.furnish}}
+                        </p>
+						</div>
+						</div>
+						
+                    </div>
+                    <div class="col-33">
+                        <span class="text-add">S$ {{f.amount}}</span>
+                    </div>
+                </div>
+            </div><!--end location item section-->
+
+        </div>
+		 </div>	 
+		 
+	</div>	
+	<div class="row detail homesearch">
+		 <div class="col">
+			<h1>
+				
+				MOST POPULAR PLACES
+			</h1>
+		 </div>	 
+	 </div>		
+	 <div id="cloth-shop-content">	
+	 <div id="product-list" class="row">
+			
+            <div class="col">
+				<div class="proprepeat" ng-repeat="p in places">	
+                <div class="cube-item" ng-style="{'background-image':'url({{p.image}})'}">
+                    <h1 class="locationame">
+                         {{ p.area_name }} Singapore 
+                    </h1>
+
+                    <p class="locationcount">
+                        {{ p.property_count}}  Properties
+                    </p>
+                </div>
+               
+                
+                
+                
+            </div>
+
+            
+        </div>		 
+        </div>
+		
+	
+	 <div id="menu-dashboard-content" class="menuclasscount" ng-repeat="c in countofhightlight" >
+        <!--panel section-->
+        <div class="menu-panel">
+            <div class="row" >
+                <div class="col-50" >
+                   <i class="flaticon-tag"></i>
+
+                    <p>{{ c.sale_count }}</p>
+                    <p>Listings For Sale</p>
+                </div>
+                <div class="col-50" >
+                    <i class="flaticon-symbol-1"></i>
+
+                    <p>{{ c.rent_count }}</p>
+                    <p>Listings For Rent</p>
+                </div>
+               
+            </div>
+
+            <div class="row">
+                <div class="col-50" >
+                    <i class="flaticon-people"></i>
+
+                    <p>{{ c.agent_count }}</p>
+                    <p>Agents</p>
+                </div>
+                <div class="col-50" >
+                   <i class="flaticon-people-1"></i>
+
+                    <p>{{ c.zone_count }}</p>
+                    <p>Zone</p>
+                </div>
+                
+            </div>
+
+            
+        </div><!--end panel section-->
+
+
+    </div><!--Menu dashboard section-->	
+    </div><!--Menu dashboard section-->	
+    </ion-content>
+    
+
+</ion-view><!--end online course section-->
